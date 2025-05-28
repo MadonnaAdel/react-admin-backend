@@ -41,10 +41,13 @@ app.get("/favicon.ico", (req, res) => res.status(204).end());
 
 connectToDB()
   .then(() => {
-    app.listen(port, () => {
-      console.log("Server started at Port", port);
-    });
+    console.log("✅ Connected to DB");
+    if (process.env.NODE_ENV !== "vercel") {
+      app.listen(port, () => console.log(`Server started on port ${port}`));
+    }
   })
   .catch((error) => {
-    console.error("Error starting server:", error);
+    console.error("❌ DB connection failed:", error);
   });
+
+export default app;
