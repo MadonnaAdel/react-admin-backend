@@ -1,0 +1,179 @@
+
+openapi: 3.0.0
+info:
+  title: React Admin API
+  description: Simple CRUD API for posts, products, orders, and users
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:5000/api
+    description: Local development server
+
+paths:
+  /products:
+    get:
+      summary: Get all products
+      tags: [Products]
+      responses:
+        '200':
+          description: A list of products
+    post:
+      summary: Add a new product
+      tags: [Products]
+      responses:
+        '201':
+          description: Product created
+
+  /products/{id}:
+    get:
+      summary: Get a single product
+      tags: [Products]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Product found
+        '404':
+          description: Product not found
+    delete:
+      summary: Delete a product
+      tags: [Products]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Product deleted
+
+  /posts:
+    get:
+      summary: Get all posts
+      tags: [Posts]
+      responses:
+        '200':
+          description: A list of posts
+    post:
+      summary: Add a new post
+      tags: [Posts]
+      responses:
+        '201':
+          description: Post created
+
+  /posts/{id}:
+    get:
+      summary: Get a single post
+      tags: [Posts]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Post found
+        '404':
+          description: Post not found
+    delete:
+      summary: Delete a post
+      tags: [Posts]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Post deleted
+
+  /orders:
+    get:
+      summary: Get all orders
+      tags: [Orders]
+      responses:
+        '200':
+          description: A list of orders
+    post:
+      summary: Add a new order
+      tags: [Orders]
+      responses:
+        '201':
+          description: Order created
+
+  /orders/{id}:
+    get:
+      summary: Get a single order
+      tags: [Orders]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Order found
+        '404':
+          description: Order not found
+    delete:
+      summary: Delete an order
+      tags: [Orders]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Order deleted
+
+  /users:
+    get:
+      summary: Get all users
+      tags: [Users]
+      responses:
+        '200':
+          description: A list of users
+    post:
+      summary: Add a new user
+      tags: [Users]
+      responses:
+        '201':
+          description: User created
+
+  /users/{id}:
+    get:
+      summary: Get a single user
+      tags: [Users]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User found
+        '404':
+          description: User not found
+    delete:
+      summary: Delete a user
+      tags: [Users]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: User deleted
