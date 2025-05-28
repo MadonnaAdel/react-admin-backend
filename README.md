@@ -16,7 +16,7 @@ Used for testing and demo purposes in front-end admin dashboards.
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/your-username/react-admin-ui-testapi.git
+git clone https://github.com/MadonnaAdel/react-admin-backend
 cd react-admin-ui-testapi
 ```
 
