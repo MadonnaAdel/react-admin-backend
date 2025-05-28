@@ -18,7 +18,12 @@ const port = process.env.PORT || 3000;
 
 app.use(cors({
   origin: (origin, callback) => {
-    callback(null, true);
+    if (!origin) return callback(null, true); // يسمح للطلبات من نفس السيرفر أو من Postman مثلاً
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
   },
   credentials: true,
   allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization", "User-Id"],
@@ -26,7 +31,6 @@ app.use(cors({
   preflightContinue: false,
   optionsSuccessStatus: 204
 }));
-
 
 app.use(express.json());
 
