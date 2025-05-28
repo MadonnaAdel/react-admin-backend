@@ -7,6 +7,7 @@ import product from "./routes/productsRoutes.js";
 import posts from "./routes/postsRoutes.js";
 import order from "./routes/ordersRoutes.js";
 import dotenv from "dotenv";
+import mongoose from "mongoose";
 dotenv.config();
 // seedUsers();
 // seedOrders();
@@ -37,10 +38,23 @@ app.get("/", (req, res) => {
 });
 
 app.get("/favicon.ico", (req, res) => res.status(204).end());
- const connectToDB = async () => {
+const connectToDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log("MongoDB connected ✅");
+    const DB_URI = process.env.MONGO_URI;
+
+    if (!DB_URI) {
+      throw new Error("DB_URI is not defined in environment variables");
+    }
+
+    await mongoose.connect(DB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 30000,
+      socketTimeoutMS: 45000,
+      maxPoolSize: 10,
+    });
+
+    console.log("✅ MongoDB connected");
   } catch (error) {
     console.error("MongoDB connection error ❌:", error);
     throw error;
