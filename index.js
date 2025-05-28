@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import { seedOrders, seedPosts, seedProducts, seedUsers } from "./seed.js";
-import { connectToDB } from "./db.js";
 
 import users from "./routes/usersRoutes.js";
 import product from "./routes/productsRoutes.js";
@@ -38,7 +37,15 @@ app.get("/", (req, res) => {
 });
 
 app.get("/favicon.ico", (req, res) => res.status(204).end());
-
+ const connectToDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("MongoDB connected ✅");
+  } catch (error) {
+    console.error("MongoDB connection error ❌:", error);
+    throw error;
+  }
+};
 connectToDB()
   .then(() => {
     console.log("✅ Connected to DB");
