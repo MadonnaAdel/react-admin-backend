@@ -15,10 +15,10 @@ dotenv.config();
 // seedProducts();
 const app = express();
 const port = process.env.PORT || 3000;
-
+const allowedOrigins = ["https://myfrontend.com", "http://localhost:5173/"];
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin) return callback(null, true); // يسمح للطلبات من نفس السيرفر أو من Postman مثلاً
+    if (!origin) return callback(null, true);
     if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
