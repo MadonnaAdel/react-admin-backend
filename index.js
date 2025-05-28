@@ -16,15 +16,14 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(
-  cors({
-    origin: "*",
-    credentials: true,
-    allowedHeaders:
-      "Origin, X-Requested-With, Content-Type, Accept, Authorization, 'User-Id'",
-    methods: "GET, POST, PATCH, DELETE, OPTIONS, PUT",
-  })
-);
+app.use(cors({
+  origin: "*",
+  credentials: true,
+  allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization", "User-Id"],
+  methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS", "PUT"],
+  preflightContinue: false,
+  optionsSuccessStatus: 204
+}));
 
 app.use(express.json());
 
