@@ -6,7 +6,7 @@ info:
   version: 1.0.0
 
 servers:
-  - url: https://reactadminapi.vercel.app/
+  - url: https://reactadmin-ovax7poq6-madonnaadels-projects.vercel.app/api/
     description: Local development server
 
 paths:
