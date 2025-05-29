@@ -15,22 +15,31 @@ dotenv.config();
 // seedProducts();
 const app = express();
 const port = process.env.PORT || 3000;
-const allowedOrigins = [ "http://localhost:5173/"];
-app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-  allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization", "User-Id"],
-  methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS", "PUT"],
-  preflightContinue: false,
-  optionsSuccessStatus: 204
-}));
+const allowedOrigins = ["http://localhost:5173"];
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+    allowedHeaders: [
+      "Origin",
+      "X-Requested-With",
+      "Content-Type",
+      "Accept",
+      "Authorization",
+      "User-Id",
+    ],
+    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS", "PUT"],
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+  })
+);
 
 app.use(express.json());
 
