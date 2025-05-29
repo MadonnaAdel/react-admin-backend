@@ -26,15 +26,8 @@ app.use(
         callback(new Error("Not allowed by CORS"));
       }
     },
-    credentials: true,
-    allowedHeaders: [
-      "Origin",
-      "X-Requested-With",
-      "Content-Type",
-      "Accept",
-      "Authorization",
-      "User-Id",
-    ],
+    credentials: "include",
+
     methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS", "PUT"],
     preflightContinue: false,
     optionsSuccessStatus: 204,
